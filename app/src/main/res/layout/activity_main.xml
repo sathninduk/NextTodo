@@ -42,20 +42,17 @@
                         android:background="@color/secondary"
                         android:backgroundTint="@color/secondary">
 
-                        <com.google.android.material.search.SearchBar
-                            android:id="@+id/search_bar"
-                            android:layout_width="0dp"
-                            android:layout_height="43dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:hint="Search all tasks"
-                            app:backgroundTint="@color/accent"
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:text="NextTodo"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/profileButton"
-                            app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.45" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageButton
                             android:id="@+id/profileButton"
@@ -67,9 +64,9 @@
                             android:onClick="onStartProfileActivity"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/search_bar"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.514" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </com.google.android.material.appbar.AppBarLayout>
@@ -384,6 +381,7 @@
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -413,38 +411,14 @@
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="140dp">
-
-                                    <TextView
-                                        android:id="@+id/textView3"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="24dp"
-                                        android:layout_marginTop="16dp"
-                                        android:text="Hey there!"
-                                        android:textStyle="bold"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
-
-                                    <TextView
-                                        android:id="@+id/textView4"
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="24dp"
-                                        android:layout_marginTop="4dp"
-                                        android:layout_marginEnd="24dp"
-                                        android:text="NextTodo"
-                                        android:textSize="24sp"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                                    android:layout_height="match_parent">
 
                                     <Button
                                         android:id="@+id/markAttendanceButton"
                                         android:layout_width="0dp"
                                         android:layout_height="43dp"
                                         android:layout_marginStart="24dp"
-                                        android:layout_marginTop="8dp"
+                                        android:layout_marginTop="16dp"
                                         android:layout_marginEnd="24dp"
                                         android:backgroundTint="@color/accent"
                                         android:text="Add Task"
@@ -454,20 +428,82 @@
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintHorizontal_bias="0.0"
                                         app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                                        app:layout_constraintTop_toTopOf="parent" />
 
                                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                                <View
-                                    android:id="@+id/divider"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:background="?android:attr/listDivider" />
-
                                 <LinearLayout
+                                    android:id="@+id/TasksList"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:orientation="vertical"/>
+                                    android:orientation="vertical">
+
+                                    <com.google.android.material.card.MaterialCardView
+                                        android:id="@+id/notification_1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="16dp"
+                                        android:layout_marginTop="12dp"
+                                        android:layout_marginEnd="16dp"
+                                        android:backgroundTint="@color/primary"
+                                        app:cardBackgroundColor="@color/secondary"
+                                        app:cardCornerRadius="14dp"
+                                        app:layout_constraintBottom_toBottomOf="@+id/message_sender_1"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="@+id/message_sender_1"
+                                        app:strokeColor="@color/accent"
+                                        app:strokeWidth="1dp">
+
+                                        <androidx.constraintlayout.widget.ConstraintLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <LinearLayout
+                                                android:id="@+id/notification_9"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="16dp"
+                                                android:layout_marginTop="16dp"
+                                                android:layout_marginEnd="16dp"
+                                                android:layout_marginBottom="16dp"
+                                                android:orientation="vertical"
+                                                app:layout_constraintBottom_toBottomOf="parent"
+                                                app:layout_constraintEnd_toEndOf="parent"
+                                                app:layout_constraintStart_toStartOf="parent"
+                                                app:layout_constraintTop_toTopOf="parent">
+
+                                                <TextView
+                                                    android:id="@+id/notification_title_9"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="MAD - Lab Exam 2"
+                                                    android:textColor="@color/black"
+                                                    android:textSize="14sp"
+                                                    android:textStyle="normal" />
+
+                                                <TextView
+                                                    android:id="@+id/notification_body_9"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="The MAD Lab Exam 2 is now available on the courseweb page."
+                                                    android:textColor="@color/colorTextSecondary"
+                                                    android:textSize="10sp" />
+
+                                                <TextView
+                                                    android:id="@+id/notification_age_9"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="4dp"
+                                                    android:text="6 hours ago"
+                                                    android:textColor="@color/colorTextSecondary"
+                                                    android:textSize="8sp" />
+
+                                            </LinearLayout>
+                                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                    </com.google.android.material.card.MaterialCardView>
+
+                                </LinearLayout>
 
                             </LinearLayout>
                         </ScrollView>
