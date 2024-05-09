@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My SLIIT</string>
+    <string name="app_name">NextTodo</string>
     <string name="home">Home</string>
     <string name="bot">Bot</string>
     <string name="alerts">Alerts</string>
