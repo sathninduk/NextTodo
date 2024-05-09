@@ -8,11 +8,24 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.*
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
+import androidx.lifecycle.ViewModelProvider
+import com.example.nexttodo.database.TaskDatabase
+import com.example.nexttodo.entities.Task
+import com.example.nexttodo.repositories.TaskRepository
+import com.example.nexttodo.viewmodels.TaskViewModel
+import com.example.nexttodo.viewmodels.TaskViewModelFactory
 
 class AddTaskActivity : AppCompatActivity() {
 
     private lateinit var datePickerButton: Button
     private lateinit var backButton: Button
+    private lateinit var saveTaskButton: Button
+
+    private lateinit var titleInput: EditText
+    private lateinit var bodyInput: EditText
+
+    private lateinit var taskViewModel: TaskViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +34,9 @@ class AddTaskActivity : AppCompatActivity() {
         datePickerButton = findViewById(R.id.datePickerButton)
         backButton = findViewById(R.id.backButton)
 
+        saveTaskButton = findViewById(R.id.saveTaskButton)
+        titleInput = findViewById(R.id.titleInput)
+        bodyInput = findViewById(R.id.bodyInput)
 
 
         // Create a date picker builder
@@ -47,6 +63,18 @@ class AddTaskActivity : AppCompatActivity() {
             datePickerButton.text = dateString
         }
 
+        val taskDao = TaskDatabase.getDatabase(this).taskDao()
+        val repository = TaskRepository(taskDao)
+        val viewModelFactory = TaskViewModelFactory(repository)
+        taskViewModel = ViewModelProvider(this, viewModelFactory).get(TaskViewModel::class.java)
+
+        saveTaskButton.setOnClickListener {
+            val title = titleInput.text.toString()
+            val notes = bodyInput.text.toString()
+            val date = datePickerButton.text.toString()
+            val task = Task(0, title, notes, 1, date) // assuming priority is 1
+            taskViewModel.insert(task)
+        }
 
     }
 

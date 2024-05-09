@@ -49,6 +49,7 @@
         app:suffixTextColor="@color/onAccent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/titleInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/accent"
@@ -78,6 +79,7 @@
         app:layout_constraintTop_toBottomOf="@+id/TitleInput">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/bodyInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:height="100dp"
