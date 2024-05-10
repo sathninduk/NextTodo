@@ -23,7 +23,11 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
     }
 
     fun delete(task: Task) = viewModelScope.launch {
-        repository.delete(task)
+        try {
+            repository.delete(task)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun getAllTasks(): LiveData<List<Task>> {

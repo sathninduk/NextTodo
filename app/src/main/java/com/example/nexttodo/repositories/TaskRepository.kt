@@ -14,11 +14,11 @@ class TaskRepository(private val taskDao: TaskDao) {
         taskDao.insert(task)
     }
 
-    fun update(task: Task) {
+    suspend fun update(task: Task) = withContext(Dispatchers.IO) {
         taskDao.update(task)
     }
 
-    fun delete(task: Task) {
+    suspend fun delete(task: Task) = withContext(Dispatchers.IO) {
         taskDao.delete(task)
     }
 

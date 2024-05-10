@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         val viewModelFactory = TaskViewModelFactory(repository)
         val taskViewModel = ViewModelProvider(this, viewModelFactory).get(TaskViewModel::class.java)
 
-        val adapter = TaskAdapter(emptyList())
+        val adapter = TaskAdapter(emptyList(), taskViewModel)
         tasksList.adapter = adapter
 
         taskViewModel.getAllTasks().observe(this, Observer { tasks ->
