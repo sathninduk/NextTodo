@@ -9,6 +9,7 @@ import java.util.*
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.nexttodo.database.TaskDatabase
 import com.example.nexttodo.entities.Task
@@ -72,8 +73,18 @@ class AddTaskActivity : AppCompatActivity() {
             val title = titleInput.text.toString()
             val notes = bodyInput.text.toString()
             val date = datePickerButton.text.toString()
-            val task = Task(0, title, notes, 1, date) // assuming priority is 1
+//            val task = Task(0, title, notes, 1, date) // assuming priority is 1
+
+            val task = Task(0, title, notes, 1, date)
+
             taskViewModel.insert(task)
+
+            // on success, give a toast message
+            Toast.makeText(this, "Task added successfully", Toast.LENGTH_SHORT).show()
+
+            // go back to the main activity
+            backToMainActivity(this)
+
         }
 
     }
