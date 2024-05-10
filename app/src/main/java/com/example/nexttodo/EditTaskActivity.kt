@@ -83,7 +83,7 @@ class EditTaskActivity : AppCompatActivity() {
             val notes = bodyInput.text.toString()
             val date = datePickerButton.text.toString()
 
-            val task = Task(taskId, title, notes, 1, date)
+            val task = Task(taskId, title, notes, 0, date)
 
             taskViewModel.update(task)
 
