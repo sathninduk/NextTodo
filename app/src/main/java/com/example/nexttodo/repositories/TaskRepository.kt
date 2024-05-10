@@ -1,23 +1,28 @@
 package com.example.nexttodo.repositories
 
+import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
 import com.example.nexttodo.dao.TaskDao
 import com.example.nexttodo.entities.Task
-
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class TaskRepository(private val taskDao: TaskDao) {
-    suspend fun insert(task: Task) {
+
+    suspend fun insert(task: Task) = withContext(Dispatchers.IO) {
         taskDao.insert(task)
     }
 
-    suspend fun update(task: Task) {
+    fun update(task: Task) {
         taskDao.update(task)
     }
 
-    suspend fun delete(task: Task) {
+    fun delete(task: Task) {
         taskDao.delete(task)
     }
 
-    suspend fun getAllTasks(): List<Task> {
-        return taskDao.getAllTasks()
+    fun getAllTasks(): LiveData<List<Task>> = liveData(Dispatchers.IO) {
+        emit(taskDao.getAllTasks())
     }
 }

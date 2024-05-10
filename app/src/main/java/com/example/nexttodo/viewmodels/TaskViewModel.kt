@@ -1,5 +1,6 @@
 package com.example.nexttodo.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.nexttodo.entities.Task
@@ -10,7 +11,11 @@ import kotlinx.coroutines.launch
 class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
 
     fun insert(task: Task) = viewModelScope.launch {
-        repository.insert(task)
+        try {
+            repository.insert(task)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun update(task: Task) = viewModelScope.launch {
@@ -21,7 +26,12 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         repository.delete(task)
     }
 
-    fun getAllTasks() = viewModelScope.launch {
-        repository.getAllTasks()
+    fun getAllTasks(): LiveData<List<Task>> {
+        try {
+            return repository.getAllTasks()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw e
+        }
     }
 }

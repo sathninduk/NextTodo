@@ -66,7 +66,7 @@ class AddTaskActivity : AppCompatActivity() {
         val taskDao = TaskDatabase.getDatabase(this).taskDao()
         val repository = TaskRepository(taskDao)
         val viewModelFactory = TaskViewModelFactory(repository)
-        taskViewModel = ViewModelProvider(this, viewModelFactory).get(TaskViewModel::class.java)
+        taskViewModel = ViewModelProvider(this, viewModelFactory)[TaskViewModel::class.java]
 
         saveTaskButton.setOnClickListener {
             val title = titleInput.text.toString()
