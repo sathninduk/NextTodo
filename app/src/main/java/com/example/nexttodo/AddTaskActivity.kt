@@ -74,7 +74,7 @@ class AddTaskActivity : AppCompatActivity() {
             val notes = bodyInput.text.toString()
             val date = datePickerButton.text.toString()
 
-            val task = Task(0, title, notes, 1, date)
+            val task = Task(0, title, notes, 0, date)
 
             taskViewModel.insert(task)
 

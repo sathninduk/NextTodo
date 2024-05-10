@@ -19,6 +19,6 @@ interface TaskDao {
     @Query("SELECT * FROM task_table WHERE id = :id")
     fun getTaskById(id: Int): LiveData<Task>
 
-    @Query("SELECT * FROM task_table ORDER BY deadline ASC")
+    @Query("SELECT * FROM task_table WHERE completed = 0 ORDER BY deadline ASC")
     fun getAllTasks(): LiveData<List<Task>>
 }

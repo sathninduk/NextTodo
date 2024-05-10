@@ -19,6 +19,12 @@
         android:textSize="14sp" />
 
     <Button
+        android:id="@+id/complete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mark Complete" />
+
+    <Button
         android:id="@+id/delete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -16,8 +16,8 @@ data class Task(
     @ColumnInfo(name = "description")
     val description: String,
 
-    @ColumnInfo(name = "priority")
-    val priority: Int,
+    @ColumnInfo(name = "completed")
+    val completed: Int,
 
     @ColumnInfo(name = "deadline")
     val deadline: String
