@@ -15,8 +15,10 @@ import com.example.nexttodo.viewmodels.TaskViewModel
 import com.example.nexttodo.viewmodels.TaskViewModelFactory
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.DateFormat
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.Date
-import kotlin.properties.Delegates
+import java.util.Locale
 
 class EditTaskActivity : AppCompatActivity() {
 
@@ -75,15 +77,30 @@ class EditTaskActivity : AppCompatActivity() {
         taskViewModel.getTaskById(taskId).observe(this) { task ->
             titleInput.setText(task.title)
             bodyInput.setText(task.description)
-            datePickerButton.text = task.deadline
+            datePickerButton.text = task.deadline.toString()
         }
 
         saveTaskButton.setOnClickListener {
             val title = titleInput.text.toString()
             val notes = bodyInput.text.toString()
-            val date = datePickerButton.text.toString()
+            val dateString = datePickerButton.text.toString()
 
-            val task = Task(taskId, title, notes, 0, date)
+            val format = SimpleDateFormat("MMMM d, yyyy", Locale.US)
+            var utilDate: Date? = null
+            if (dateString.isNotBlank()) {
+                try {
+                    println("Parsing date string: $dateString")
+                    utilDate = format.parse(dateString)
+                    println("Parsed date: $utilDate")
+                } catch (e: ParseException) {
+                    e.printStackTrace()
+                }
+            } else {
+                println("dateString is null or empty")
+            }
+            val sqlDate = java.sql.Date(utilDate?.time ?: 0)
+
+            val task = Task(taskId, title, notes, 0, sqlDate)
 
             taskViewModel.update(task)
 

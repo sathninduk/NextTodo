@@ -18,6 +18,7 @@ class TaskAdapter(var tasks: List<Task>, private val taskViewModel: TaskViewMode
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.notification_title_9)
         val description: TextView = itemView.findViewById(R.id.notification_body_9)
+        val completeButton: Button = itemView.findViewById(R.id.complete_button)
         val deleteButton: Button = itemView.findViewById(R.id.delete_button)
         val editButton: Button = itemView.findViewById(R.id.edit_button)
     }
@@ -34,6 +35,10 @@ class TaskAdapter(var tasks: List<Task>, private val taskViewModel: TaskViewMode
 
         holder.deleteButton.setOnClickListener {
             taskViewModel.delete(task)
+        }
+
+        holder.completeButton.setOnClickListener {
+            taskViewModel.update(task.copy(completed = 1))
         }
 
         holder.editButton.setOnClickListener {

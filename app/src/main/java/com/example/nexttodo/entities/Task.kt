@@ -3,6 +3,7 @@ package com.example.nexttodo.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.sql.Date
 
 @Entity(tableName = "task_table")
 data class Task(
@@ -20,5 +21,5 @@ data class Task(
     val completed: Int,
 
     @ColumnInfo(name = "deadline")
-    val deadline: String
+    val deadline: Date
 )

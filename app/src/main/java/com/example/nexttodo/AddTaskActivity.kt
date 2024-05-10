@@ -16,6 +16,8 @@ import com.example.nexttodo.entities.Task
 import com.example.nexttodo.repositories.TaskRepository
 import com.example.nexttodo.viewmodels.TaskViewModel
 import com.example.nexttodo.viewmodels.TaskViewModelFactory
+import java.text.ParseException
+import java.text.SimpleDateFormat
 
 class AddTaskActivity : AppCompatActivity() {
 
@@ -72,9 +74,25 @@ class AddTaskActivity : AppCompatActivity() {
         saveTaskButton.setOnClickListener {
             val title = titleInput.text.toString()
             val notes = bodyInput.text.toString()
-            val date = datePickerButton.text.toString()
+            val dateString = datePickerButton.text.toString()
 
-            val task = Task(0, title, notes, 0, date)
+            val format = SimpleDateFormat("MMMM d, yyyy", Locale.US)
+            var utilDate: Date? = null
+            if (dateString.isNotBlank()) {
+                try {
+                    println("Parsing date string: $dateString")
+                    utilDate = format.parse(dateString)
+                    println("Parsed date: $utilDate")
+                } catch (e: ParseException) {
+                    e.printStackTrace()
+                }
+            } else {
+                println("dateString is null or empty")
+            }
+            val sqlDate = java.sql.Date(utilDate?.time ?: 0)
+
+            // create a task object
+            val task = Task(0, title, notes, 0, sqlDate)
 
             taskViewModel.insert(task)
 
