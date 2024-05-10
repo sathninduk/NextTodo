@@ -3,9 +3,6 @@ package com.example.nexttodo
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
-import java.text.DateFormat
-import com.google.android.material.datepicker.MaterialDatePicker
-import java.util.*
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -16,8 +13,12 @@ import com.example.nexttodo.entities.Task
 import com.example.nexttodo.repositories.TaskRepository
 import com.example.nexttodo.viewmodels.TaskViewModel
 import com.example.nexttodo.viewmodels.TaskViewModelFactory
+import com.google.android.material.datepicker.MaterialDatePicker
+import java.text.DateFormat
+import java.util.Date
+import kotlin.properties.Delegates
 
-class AddTaskActivity : AppCompatActivity() {
+class EditTaskActivity : AppCompatActivity() {
 
     private lateinit var datePickerButton: Button
     private lateinit var backButton: Button
@@ -29,15 +30,19 @@ class AddTaskActivity : AppCompatActivity() {
     private lateinit var taskViewModel: TaskViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_task)
+        setContentView(R.layout.activity_edit_task)
 
-        datePickerButton = findViewById(R.id.datePickerButton)
-        backButton = findViewById(R.id.backButton)
+        val taskId = intent.getIntExtra("TASK_ID", -1)
+//        val task = taskViewModel.getTaskById(taskId)
 
-        saveTaskButton = findViewById(R.id.saveTaskButton)
-        titleInput = findViewById(R.id.titleInput)
-        bodyInput = findViewById(R.id.bodyInput)
+        datePickerButton = findViewById(R.id.editdatePickerButton)
+        backButton = findViewById(R.id.editBackButton)
+
+        saveTaskButton = findViewById(R.id.editSaveTaskButton)
+        titleInput = findViewById(R.id.edittitleInput)
+        bodyInput = findViewById(R.id.editbodyInput)
 
 
         // Create a date picker builder
@@ -58,8 +63,6 @@ class AddTaskActivity : AppCompatActivity() {
 
         // Set the date picker dialog positive button click listener
         datePicker.addOnPositiveButtonClickListener { selection ->
-            // The selection parameter contains the selected date in milliseconds since epoch
-            // Convert it to a human-readable date string and set it as the button text
             val dateString = DateFormat.getDateInstance().format(Date(selection))
             datePickerButton.text = dateString
         }
@@ -69,17 +72,23 @@ class AddTaskActivity : AppCompatActivity() {
         val viewModelFactory = TaskViewModelFactory(repository)
         taskViewModel = ViewModelProvider(this, viewModelFactory)[TaskViewModel::class.java]
 
+        taskViewModel.getTaskById(taskId).observe(this) { task ->
+            titleInput.setText(task.title)
+            bodyInput.setText(task.description)
+            datePickerButton.text = task.deadline
+        }
+
         saveTaskButton.setOnClickListener {
             val title = titleInput.text.toString()
             val notes = bodyInput.text.toString()
             val date = datePickerButton.text.toString()
 
-            val task = Task(0, title, notes, 1, date)
+            val task = Task(taskId, title, notes, 1, date)
 
-            taskViewModel.insert(task)
+            taskViewModel.update(task)
 
             // on success, give a toast message
-            Toast.makeText(this, "Task added successfully", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Task updated successfully", Toast.LENGTH_SHORT).show()
 
             // go back to the main activity
             backToMainActivity(this)
@@ -92,6 +101,5 @@ class AddTaskActivity : AppCompatActivity() {
         val intent = Intent(context, MainActivity::class.java)
         context.startActivity(intent)
     }
-
 
 }

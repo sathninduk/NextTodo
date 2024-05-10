@@ -30,6 +30,15 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         }
     }
 
+    fun getTaskById(id: Int): LiveData<Task> {
+        try {
+            return repository.getTaskById(id)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw e
+        }
+    }
+
     fun getAllTasks(): LiveData<List<Task>> {
         try {
             return repository.getAllTasks()
