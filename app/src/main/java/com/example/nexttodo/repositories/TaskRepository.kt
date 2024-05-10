@@ -22,7 +22,5 @@ class TaskRepository(private val taskDao: TaskDao) {
         taskDao.delete(task)
     }
 
-    fun getAllTasks(): LiveData<List<Task>> = liveData(Dispatchers.IO) {
-        emit(taskDao.getAllTasks())
-    }
+    fun getAllTasks(): LiveData<List<Task>> = taskDao.getAllTasks()
 }

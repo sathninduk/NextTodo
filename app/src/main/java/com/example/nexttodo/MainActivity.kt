@@ -1,5 +1,6 @@
 package com.example.nexttodo
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var addTaskButton: Button
     private lateinit var tasksList: RecyclerView
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,10 +45,10 @@ class MainActivity : AppCompatActivity() {
         val adapter = TaskAdapter(emptyList())
         tasksList.adapter = adapter
 
-        taskViewModel.getAllTasks().observe(this, Observer {
-            adapter.tasks = it
+        taskViewModel.getAllTasks().observe(this, Observer { tasks ->
+            adapter.tasks = tasks
+            adapter.notifyDataSetChanged()
         })
-
 
 
     }

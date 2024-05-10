@@ -16,6 +16,6 @@ interface TaskDao {
     @Delete
     fun delete(task: Task)
 
-    @Query("SELECT * FROM task_table")
-    fun getAllTasks(): List<Task>
+    @Query("SELECT * FROM task_table ORDER BY deadline ASC")
+    fun getAllTasks(): LiveData<List<Task>>
 }
