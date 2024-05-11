@@ -141,7 +141,7 @@
                                             android:layout_width="61dp"
                                             android:layout_height="match_parent"
                                             android:gravity="center_vertical"
-                                            android:text="Today Tasks"
+                                            android:text="Today"
                                             android:textAlignment="center"
                                             android:textSize="10sp"
                                             android:textStyle="bold" />
