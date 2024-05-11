@@ -24,6 +24,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tasksList: RecyclerView
     private lateinit var noTaskMessage: TextView
 
+    private lateinit var todayTasks: TextView
+    private lateinit var totalTasks: TextView
+    private lateinit var overdueTasks: TextView
+    private lateinit var completedTasks: TextView
+
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +40,11 @@ class MainActivity : AppCompatActivity() {
             startAddTaskActivity(this)
         }
 
+        todayTasks = findViewById(R.id.todayTasks)
+        totalTasks = findViewById(R.id.totalTasks)
+        overdueTasks = findViewById(R.id.overdueTasks)
+        completedTasks = findViewById(R.id.completedTasks)
+
         tasksList = findViewById(R.id.TasksList)
         tasksList.layoutManager = LinearLayoutManager(this)
 
@@ -43,6 +53,22 @@ class MainActivity : AppCompatActivity() {
 
         val viewModelFactory = TaskViewModelFactory(repository)
         val taskViewModel = ViewModelProvider(this, viewModelFactory).get(TaskViewModel::class.java)
+
+        taskViewModel.getTodayTasksCount().observe(this, Observer { tasks ->
+            todayTasks.text = tasks.toString()
+        })
+
+        taskViewModel.getAllTasks().observe(this, Observer { tasks ->
+            totalTasks.text = tasks.size.toString()
+        })
+
+        taskViewModel.getOverdueTasksCount().observe(this, Observer { tasks ->
+            overdueTasks.text = tasks.toString()
+        })
+
+        taskViewModel.getCompletedTasksCount().observe(this, Observer { tasks ->
+            completedTasks.text = tasks.toString()
+        })
 
         noTaskMessage = findViewById(R.id.noTasks)
         noTaskMessage.visibility = View.GONE

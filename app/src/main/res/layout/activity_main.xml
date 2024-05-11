@@ -118,10 +118,10 @@
                                     app:layout_constraintTop_toTopOf="parent">
 
                                     <TextView
-                                        android:id="@+id/textView12"
+                                        android:id="@+id/todayTasks"
                                         android:layout_width="match_parent"
                                         android:layout_height="66dp"
-                                        android:text="2"
+                                        android:text="0"
                                         android:textSize="42sp" />
 
                                     <LinearLayout
@@ -184,10 +184,10 @@
                                     app:layout_constraintTop_toTopOf="parent">
 
                                     <TextView
-                                        android:id="@+id/textView14"
+                                        android:id="@+id/totalTasks"
                                         android:layout_width="match_parent"
                                         android:layout_height="66dp"
-                                        android:text="12"
+                                        android:text="0"
                                         android:textSize="42sp" />
 
                                     <LinearLayout
@@ -251,11 +251,11 @@
                                     app:layout_constraintTop_toTopOf="parent">
 
                                     <TextView
-                                        android:id="@+id/textView16"
+                                        android:id="@+id/overdueTasks"
                                         android:layout_width="match_parent"
                                         android:layout_height="66dp"
-                                        android:text="@string/_2"
-                                        android:textSize="48sp" />
+                                        android:text="0"
+                                        android:textSize="42sp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -319,11 +319,11 @@
                                     app:layout_constraintTop_toTopOf="parent">
 
                                     <TextView
-                                        android:id="@+id/textView18"
+                                        android:id="@+id/completedTasks"
                                         android:layout_width="match_parent"
                                         android:layout_height="66dp"
                                         android:text="@string/_0"
-                                        android:textSize="48sp" />
+                                        android:textSize="42sp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"

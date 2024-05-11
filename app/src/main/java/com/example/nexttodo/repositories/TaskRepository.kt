@@ -24,4 +24,12 @@ class TaskRepository(private val taskDao: TaskDao) {
     fun getTaskById(id: Int): LiveData<Task> = taskDao.getTaskById(id)
 
     fun getAllTasks(): LiveData<List<Task>> = taskDao.getAllTasks()
+
+    fun getCompletedTasksCount(): LiveData<Int> = taskDao.getCompletedTasksCount()
+
+    fun getUncompletedTasksCount(): LiveData<Int> = taskDao.getUncompletedTasksCount()
+
+    fun getTodayTasksCount(): LiveData<Int> = taskDao.getTodayTasksCount()
+
+    fun getOverdueTasksCount(): LiveData<Int> = taskDao.getOverdueTasksCount()
 }

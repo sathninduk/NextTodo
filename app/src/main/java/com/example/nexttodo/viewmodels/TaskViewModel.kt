@@ -47,4 +47,40 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
             throw e
         }
     }
+
+    fun getCompletedTasksCount(): LiveData<Int> {
+        try {
+            return repository.getCompletedTasksCount()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw e
+        }
+    }
+
+    fun getUncompletedTasksCount(): LiveData<Int> {
+        try {
+            return repository.getUncompletedTasksCount()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw e
+        }
+    }
+
+    fun getTodayTasksCount(): LiveData<Int> {
+        try {
+            return repository.getTodayTasksCount()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw e
+        }
+    }
+
+    fun getOverdueTasksCount(): LiveData<Int> {
+        try {
+            return repository.getOverdueTasksCount()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw e
+        }
+    }
 }

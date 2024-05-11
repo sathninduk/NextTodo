@@ -21,4 +21,16 @@ interface TaskDao {
 
     @Query("SELECT * FROM task_table WHERE completed = 0 ORDER BY deadline ASC")
     fun getAllTasks(): LiveData<List<Task>>
+
+    @Query("SELECT COUNT(*) FROM task_table WHERE completed = 1 ORDER BY deadline ASC")
+    fun getCompletedTasksCount(): LiveData<Int>
+
+    @Query("SELECT COUNT(*) FROM task_table WHERE completed = 0 ORDER BY deadline ASC")
+    fun getUncompletedTasksCount(): LiveData<Int>
+
+    @Query("SELECT COUNT(*) FROM task_table WHERE date(deadline / 1000 , 'unixepoch') = date('now', '-1 day', 'localtime') AND completed = 0\n")
+    fun getTodayTasksCount(): LiveData<Int>
+
+    @Query("SELECT COUNT(*) FROM task_table WHERE date(deadline / 1000 , 'unixepoch') < date('now', '-1 day', 'localtime') AND completed = 0")
+    fun getOverdueTasksCount(): LiveData<Int>
 }
