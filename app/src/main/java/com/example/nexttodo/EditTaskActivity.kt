@@ -76,7 +76,10 @@ class EditTaskActivity : AppCompatActivity() {
         taskViewModel.getTaskById(taskId).observe(this) { task ->
             titleInput.setText(task.title)
             bodyInput.setText(task.description)
-            datePickerButton.text = task.deadline.toString()
+
+            // convert task deadline date format
+            val format = SimpleDateFormat("MMMM d, yyyy", Locale.US)
+            datePickerButton.text = format.format(task.deadline)
         }
 
         saveTaskButton.setOnClickListener {
