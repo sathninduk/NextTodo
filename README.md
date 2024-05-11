@@ -21,9 +21,9 @@ NextTodo is a task management application developed using Kotlin and Java. It al
 2. Open the project in Android Studio Hedgehog | 2023.1.1 Patch 2
 3. Build and run the project on an emulator or real device
 
-## Contributing
+## Contributor
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Sathnindu Kottage @sathninduk
 
 ## License
 
