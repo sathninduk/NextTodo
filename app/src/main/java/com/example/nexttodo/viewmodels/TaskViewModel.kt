@@ -45,29 +45,14 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
     }
 
     // Get all tasks
-    fun getAllTasks(): LiveData<List<Task>> {
+    fun getAllTasks(filter: String): LiveData<List<Task>> {
         try {
+            when (filter) {
+                "today" -> return repository.getTodayTasks()
+                "overdue" -> return repository.getOverdueTasks()
+                "completed" -> return repository.getCompletedTasks()
+            }
             return repository.getAllTasks()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            throw e
-        }
-    }
-
-    // Get completed tasks
-    fun getCompletedTasksCount(): LiveData<Int> {
-        try {
-            return repository.getCompletedTasksCount()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            throw e
-        }
-    }
-
-    // Get uncompleted tasks
-    fun getUncompletedTasksCount(): LiveData<Int> {
-        try {
-            return repository.getUncompletedTasksCount()
         } catch (e: Exception) {
             e.printStackTrace()
             throw e
@@ -88,6 +73,16 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
     fun getOverdueTasksCount(): LiveData<Int> {
         try {
             return repository.getOverdueTasksCount()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw e
+        }
+    }
+
+    // Get completed tasks
+    fun getCompletedTasksCount(): LiveData<Int> {
+        try {
+            return repository.getCompletedTasksCount()
         } catch (e: Exception) {
             e.printStackTrace()
             throw e

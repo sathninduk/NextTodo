@@ -25,15 +25,31 @@ interface TaskDao {
     @Query("SELECT * FROM task_table WHERE completed = 0 ORDER BY deadline ASC")
     fun getAllTasks(): LiveData<List<Task>>
 
-    @Query("SELECT COUNT(*) FROM task_table WHERE completed = 1 ORDER BY deadline ASC")
-    fun getCompletedTasksCount(): LiveData<Int>
-
-    @Query("SELECT COUNT(*) FROM task_table WHERE completed = 0 ORDER BY deadline ASC")
+    // pending count
+    @Query("SELECT COUNT(*) FROM task_table WHERE completed = 0")
     fun getUncompletedTasksCount(): LiveData<Int>
 
-    @Query("SELECT COUNT(*) FROM task_table WHERE date(deadline / 1000 , 'unixepoch') = date('now', '-1 day', 'localtime') AND completed = 0\n")
+    // today count
+    @Query("SELECT COUNT(*) FROM task_table WHERE date(deadline / 1000 , 'unixepoch') = date('now', '-1 day', 'localtime') AND completed = 0")
     fun getTodayTasksCount(): LiveData<Int>
 
+    // get today tasks
+    @Query("SELECT * FROM task_table WHERE date(deadline / 1000 , 'unixepoch') = date('now', '-1 day', 'localtime') AND completed = 0")
+    fun getTodayTasks(): LiveData<List<Task>>
+
+    // overdue count
     @Query("SELECT COUNT(*) FROM task_table WHERE date(deadline / 1000 , 'unixepoch') < date('now', '-1 day', 'localtime') AND completed = 0")
     fun getOverdueTasksCount(): LiveData<Int>
+
+    // get overdue tasks
+    @Query("SELECT * FROM task_table WHERE date(deadline / 1000 , 'unixepoch') < date('now', '-1 day', 'localtime') AND completed = 0")
+    fun getOverdueTasks(): LiveData<List<Task>>
+
+    // completed count
+    @Query("SELECT COUNT(*) FROM task_table WHERE completed = 1")
+    fun getCompletedTasksCount(): LiveData<Int>
+
+    // get completed tasks
+    @Query("SELECT * FROM task_table WHERE completed = 1 ORDER BY deadline ASC")
+    fun getCompletedTasks(): LiveData<List<Task>>
 }

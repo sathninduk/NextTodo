@@ -54,7 +54,8 @@ class TaskAdapter(var tasks: List<Task>, private val taskViewModel: TaskViewMode
     /**
      * Attaches the ItemTouchHelper to the RecyclerView.
      */
-    fun attachToRecyclerView(recyclerView: RecyclerView) {
+    fun attachToRecyclerView(recyclerView: RecyclerView, filter: String) {
+
         val itemTouchHelperCallback = object :
             ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(
@@ -67,22 +68,48 @@ class TaskAdapter(var tasks: List<Task>, private val taskViewModel: TaskViewMode
 
             // Called when a user swipes left or right on a ViewHolder
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
+
                 val position =
-                    viewHolder.adapterPosition // Get the position of the item to be deleted
+                    try {
+                        viewHolder.adapterPosition
+                    } catch (e: Exception) {
+                        return
+                    }
+
                 if (direction == ItemTouchHelper.LEFT) {
-                    taskViewModel.delete(tasks[position]) // Delete the item from your list
+                    try {
+                        taskViewModel.delete(tasks[position]) // Delete the item from your list
 
-                    // toasts a message to the user
-                    val context = viewHolder.itemView.context
-                    Toast.makeText(context, "Task deleted", Toast.LENGTH_SHORT).show()
+                        // toasts a message to the user
+                        val context = viewHolder.itemView.context
+                        Toast.makeText(context, "Task deleted", Toast.LENGTH_SHORT).show()
 
+                    } catch (e: Exception) {
+
+                        // toasts a message to the user
+                        val context = viewHolder.itemView.context
+                        Toast.makeText(context, "Completed tasks cannot be deleted", Toast.LENGTH_SHORT).show()
+
+                    }
                 } else if (direction == ItemTouchHelper.RIGHT) {
-                    val task = tasks[position].copy(completed = 1)
-                    taskViewModel.update(task) // Set the task as completed
 
-                    // toasts a message to the user
-                    val context = viewHolder.itemView.context
-                    Toast.makeText(context, "Task completed", Toast.LENGTH_SHORT).show()
+                    try {
+
+                        val task = tasks[position].copy(completed = 1)
+                        taskViewModel.update(task) // Set the task as completed
+
+                        // toasts a message to the user
+                        val context = viewHolder.itemView.context
+                        Toast.makeText(context, "Task completed", Toast.LENGTH_SHORT).show()
+
+                    } catch (e: Exception) {
+                        // toasts a message to the user
+                        val context = viewHolder.itemView.context
+                        Toast.makeText(context, "Completed tasks cannot be completed", Toast.LENGTH_SHORT).show()
+                    }
+
+
                 }
             }
         }
@@ -90,5 +117,6 @@ class TaskAdapter(var tasks: List<Task>, private val taskViewModel: TaskViewMode
         // Attach the ItemTouchHelper to the RecyclerView
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
+
     }
 }
