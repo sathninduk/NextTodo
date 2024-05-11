@@ -8,8 +8,10 @@ import com.example.nexttodo.repositories.TaskRepository
 import kotlinx.coroutines.launch
 
 
+// TaskViewModel class is a ViewModel class that provides data to the UI and survives configuration changes.
 class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
 
+    // Insert a task into the database
     fun insert(task: Task) = viewModelScope.launch {
         try {
             repository.insert(task)
@@ -18,10 +20,12 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         }
     }
 
+    // Update a task in the database
     fun update(task: Task) = viewModelScope.launch {
         repository.update(task)
     }
 
+    // Delete a task from the database
     fun delete(task: Task) = viewModelScope.launch {
         try {
             repository.delete(task)
@@ -30,6 +34,7 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         }
     }
 
+    // Get a task by ID
     fun getTaskById(id: Int): LiveData<Task> {
         try {
             return repository.getTaskById(id)
@@ -39,6 +44,7 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         }
     }
 
+    // Get all tasks
     fun getAllTasks(): LiveData<List<Task>> {
         try {
             return repository.getAllTasks()
@@ -48,6 +54,7 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         }
     }
 
+    // Get completed tasks
     fun getCompletedTasksCount(): LiveData<Int> {
         try {
             return repository.getCompletedTasksCount()
@@ -57,6 +64,7 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         }
     }
 
+    // Get uncompleted tasks
     fun getUncompletedTasksCount(): LiveData<Int> {
         try {
             return repository.getUncompletedTasksCount()
@@ -66,6 +74,7 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         }
     }
 
+    // Get today's tasks
     fun getTodayTasksCount(): LiveData<Int> {
         try {
             return repository.getTodayTasksCount()
@@ -75,6 +84,7 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         }
     }
 
+    // Get overdue tasks
     fun getOverdueTasksCount(): LiveData<Int> {
         try {
             return repository.getOverdueTasksCount()

@@ -5,6 +5,9 @@ import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
 import com.example.nexttodo.entities.Task
 
+/**
+ * TaskDao interface is a Data Access Object that provides an API for reading and writing tasks to the database.
+ */
 @Dao
 interface TaskDao {
     @Insert(onConflict = REPLACE)

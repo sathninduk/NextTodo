@@ -5,6 +5,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.sql.Date
 
+/**
+ * Task class represents a task entity in the database.
+ */
 @Entity(tableName = "task_table")
 data class Task(
     @PrimaryKey(autoGenerate = true)
