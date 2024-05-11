@@ -6,8 +6,8 @@ NextTodo is a task management application developed using Kotlin and Java. It al
 
 - Create, update, and delete tasks
 - Filter tasks by completion status
-- Swipe to delete tasks
-- Immovable tasks when filtered by "completed"
+- Swipe left to delete a task
+- Swipe right to complete a task
 
 ## Technologies Used
 
