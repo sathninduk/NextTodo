@@ -58,19 +58,19 @@ class MainActivity : AppCompatActivity() {
         val taskViewModel = ViewModelProvider(this, viewModelFactory).get(TaskViewModel::class.java)
 
         // Observing data changes for various task counts
-        taskViewModel.getTodayTasksCount().observe(this, Observer { tasks ->
+        taskViewModel.getTodayTasksCount().observe(this, Observer { tasks -> // Observes the LiveData object for today's tasks count.
             todayTasks.text = tasks.toString()
         })
 
-        taskViewModel.getAllTasks().observe(this, Observer { tasks ->
+        taskViewModel.getAllTasks().observe(this, Observer { tasks -> // Observes the LiveData object for all tasks.
             totalTasks.text = tasks.size.toString()
         })
 
-        taskViewModel.getOverdueTasksCount().observe(this, Observer { tasks ->
+        taskViewModel.getOverdueTasksCount().observe(this, Observer { tasks -> // Observes the LiveData object for overdue tasks count.
             overdueTasks.text = tasks.toString()
         })
 
-        taskViewModel.getCompletedTasksCount().observe(this, Observer { tasks ->
+        taskViewModel.getCompletedTasksCount().observe(this, Observer { tasks -> // Observes the LiveData object for completed tasks count.
             completedTasks.text = tasks.toString()
         })
 
@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
         tasksList.adapter = adapter
 
         // Observing task list changes
-        taskViewModel.getAllTasks().observe(this, Observer { tasks ->
+        taskViewModel.getAllTasks().observe(this, Observer { tasks -> // Observes the LiveData object for all tasks.
             adapter.tasks = tasks
             adapter.notifyDataSetChanged()
 
