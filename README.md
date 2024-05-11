@@ -23,7 +23,7 @@ NextTodo is a task management application developed using Kotlin and Java. It al
 
 ## Contributor
 
-Sathnindu Kottage @sathninduk
+Sathnindu Kottage ([sathninduk](https://github.com/sathninduk))
 
 ## License
 
