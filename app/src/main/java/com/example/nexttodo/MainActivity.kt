@@ -90,6 +90,11 @@ class MainActivity : AppCompatActivity() {
         })
 
 
+        val recyclerView = tasksList
+        recyclerView.adapter = adapter
+        adapter.attachToRecyclerView(recyclerView)
+
+
     }
 
     private fun startAddTaskActivity(context: Context) {
