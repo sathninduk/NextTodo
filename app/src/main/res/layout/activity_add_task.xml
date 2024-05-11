@@ -130,7 +130,7 @@
         android:backgroundTint="@color/white"
         android:text="Back"
         android:textColor="@color/onAccent"
-        app:icon="@drawable/check"
+        app:icon="@drawable/arrow_back"
         app:iconTint="@color/onAccent"
         app:layout_constraintEnd_toStartOf="@+id/saveTaskButton"
         app:layout_constraintStart_toStartOf="parent"

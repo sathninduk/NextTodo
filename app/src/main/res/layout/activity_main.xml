@@ -134,7 +134,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
-                                            app:srcCompat="@drawable/walk" />
+                                            app:srcCompat="@drawable/today" />
 
                                         <TextView
                                             android:id="@+id/textView13"
@@ -201,14 +201,14 @@
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
 
-                                            app:srcCompat="@drawable/education" />
+                                            app:srcCompat="@drawable/pending_actions" />
 
                                         <TextView
                                             android:id="@+id/textView15"
                                             android:layout_width="61dp"
                                             android:layout_height="match_parent"
                                             android:gravity="center_vertical"
-                                            android:text="Total Tasks"
+                                            android:text="Pending"
                                             android:textAlignment="center"
                                             android:textSize="10sp"
                                             android:textStyle="bold" />
@@ -268,7 +268,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
 
-                                            app:srcCompat="@drawable/assignment" />
+                                            app:srcCompat="@drawable/notification_important" />
 
                                         <TextView
                                             android:id="@+id/textView17"
@@ -336,7 +336,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
 
-                                            app:srcCompat="@drawable/support" />
+                                            app:srcCompat="@drawable/task_completed" />
 
                                         <TextView
                                             android:id="@+id/textView19"
@@ -497,7 +497,7 @@
                         android:elevation="8dp"
                         android:text="Add Task"
                         android:textColor="@color/onAccent"
-                        app:icon="@drawable/check"
+                        app:icon="@drawable/add"
                         app:iconTint="@color/onAccent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
