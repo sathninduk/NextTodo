@@ -37,7 +37,6 @@ class EditTaskActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_task)
 
         val taskId = intent.getIntExtra("TASK_ID", -1)
-//        val task = taskViewModel.getTaskById(taskId)
 
         datePickerButton = findViewById(R.id.editdatePickerButton)
         backButton = findViewById(R.id.editBackButton)

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nexttodo.adapters.TaskAdapter
 import com.example.nexttodo.database.TaskDatabase
-import com.example.nexttodo.entities.Task
 import com.example.nexttodo.repositories.TaskRepository
 import com.example.nexttodo.viewmodels.TaskViewModel
 import com.example.nexttodo.viewmodels.TaskViewModelFactory
